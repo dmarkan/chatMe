@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0 1rem;
+}
+
+.text {
+    padding: 2rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    color: #fff;
+}
+
+button {
+    margin-bottom: 1rem;
+}
+
+input {
+    margin: 1rem 0;
+}
+
+
+
