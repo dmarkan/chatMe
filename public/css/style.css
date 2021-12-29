@@ -16,6 +16,12 @@ body {
     color: #fff;
 }
 
+.message {
+    color: #fff;
+    font-size: 0.7rem;
+    font-style: italic;
+}
+
 button {
     margin-bottom: 1rem;
 }
@@ -23,6 +29,3 @@ button {
 input {
     margin: 1rem 0;
 }
-
-
-

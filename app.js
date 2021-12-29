@@ -6,14 +6,17 @@ const app = express();
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
-mongoose.connect("mongodb+srv://darko:darmar1986@cluster0.62x42.mongodb.net/chatMeDB?retryWrites=true&w=majority", function(err) {
+mongoose.connect("mongodb+srv://darko:darmar1986@cluster0.62x42.mongodb.net/chatMeDB?retryWrites=true&w=majority", function (err) {
     // If no error, successfully connected
-  });
+});
 
 const messagesSchema = {
-    text: String
+    text: String,
+    date: String
 }
 
 const Message = mongoose.model("Message", messagesSchema);
@@ -32,23 +35,24 @@ app.get("/", function (req, res) {
             });
             res.redirect("/");
         } else {
-        res.render('index.ejs', {
-            newMessages: foundMessages
-        });
-    }
+            res.render('index.ejs', {
+                newMessages: foundMessages
+            });
+        }
     });
 
     app.post("/", function (req, res) {
         const messageContent = req.body.newMessage;
-    
-        const message = new Message ({
-            text: messageContent
+        let messageDate = new Date().toLocaleString();
+        const message = new Message({
+            text: messageContent,
+            date: messageDate
         });
-    
+
         message.save();
         res.redirect("/");
     })
-    
+
     app.post("/delete", function (req, res) {
         const messageId = req.body.buttonDel;
         Message.findByIdAndRemove(messageId, function (err) {
@@ -58,7 +62,7 @@ app.get("/", function (req, res) {
                 console.log("Message successfully removed");
                 res.redirect("/");
             }
-    });
+        });
     })
 })
 
